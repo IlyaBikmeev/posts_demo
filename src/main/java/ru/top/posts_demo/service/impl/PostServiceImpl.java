@@ -1,6 +1,9 @@
 package ru.top.posts_demo.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import ru.top.posts_demo.entity.Post;
 import ru.top.posts_demo.entity.User;
@@ -13,18 +16,25 @@ import ru.top.posts_demo.service.PostService;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
+    @Autowired
+    public PostServiceImpl(PostRepository postRepository, UserRepository userRepository) {
+        this.postRepository = postRepository;
+        this.userRepository = userRepository;
+    }
 
     @Override
     public PostResponse findById(UUID id) {
+
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException(
                         String.format("Post with id %s doesn't exist!", id)

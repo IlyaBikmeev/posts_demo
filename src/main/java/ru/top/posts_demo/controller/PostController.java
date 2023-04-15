@@ -1,6 +1,7 @@
 package ru.top.posts_demo.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,15 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/posts")
-@RequiredArgsConstructor    //Спринг сам внедрит зависимость репозитория.
 public class PostController {
 
     private final PostService postService;
+
+    @Autowired
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
+
     @GetMapping("/id/{id}")
     public PostResponse findById(@PathVariable(value = "id") UUID postId) {
         return postService.findById(postId);
