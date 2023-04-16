@@ -12,4 +12,8 @@ public interface PostService {
     PostResponse save(PostRequest dto);
 
     List<PostResponse> allUserPosts(UUID userId);
+
+    void delete(UUID postId);
+
+    PostResponse update(UUID postId, PostRequest dto);
 }

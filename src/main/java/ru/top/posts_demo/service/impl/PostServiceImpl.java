@@ -58,4 +58,28 @@ public class PostServiceImpl implements PostService {
                 ));
         return postMapper.postsToPostResponses(user.getPosts());
     }
+
+    @Override
+    public void delete(UUID postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new NoSuchElementException(
+                        String.format("Post with id %s doesn't exist!", postId)
+                ));
+        postRepository.delete(post);
+        log.info(String.format("Post with id %s has been successfully deleted!", postId));
+    }
+
+    @Override
+    public PostResponse update(UUID postId, PostRequest dto) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new NoSuchElementException(
+                        String.format("Post with id %s doesn't exist!", postId)
+                ));
+
+        post.setText(dto.getText());
+        post.setTitle(dto.getTitle());
+        return postMapper.postToPostResponse(
+                postRepository.save(post)
+        );
+    }
 }
