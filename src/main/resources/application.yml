@@ -1,6 +1,6 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/social_media
+    url: jdbc:postgresql://localhost:1234/social_media
     username: postgres
     password: 1
