@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+.jpb/
 ### STS ###
 .apt_generated
 .classpath
@@ -15,7 +16,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-.jpb
 *.iws
 *.iml
 *.ipr
