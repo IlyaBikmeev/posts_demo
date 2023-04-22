@@ -1,6 +1,5 @@
 package ru.top.posts_demo.service;
 
-import ru.top.posts_demo.entity.Post;
 import ru.top.posts_demo.entity.dto.request.PostRequest;
 import ru.top.posts_demo.entity.dto.response.PostResponse;
 
