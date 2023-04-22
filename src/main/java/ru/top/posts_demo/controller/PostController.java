@@ -27,7 +27,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public PostResponse findById(@PathVariable(value = "id") UUID postId) {
         return postService.findById(postId);
     }
