@@ -3,6 +3,7 @@ package ru.top.posts_demo.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.top.posts_demo.entity.Post;
 import ru.top.posts_demo.entity.User;
 import ru.top.posts_demo.entity.dto.request.PostRequest;
@@ -81,5 +82,10 @@ public class PostServiceImpl implements PostService {
         return postMapper.postToPostResponse(
                 postRepository.save(post)
         );
+    }
+
+    @ExceptionHandler(value = RuntimeException.class)
+    public String exceptionHandler(Exception ex) {
+        return ex.getMessage();
     }
 }
