@@ -33,7 +33,7 @@ public class PostController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public PostResponse findById(@PathVariable(value = "id") UUID postId) {
         return postService.findById(postId);
     }
@@ -48,7 +48,7 @@ public class PostController {
         return postService.save(dto);
     }
 
-    @PostMapping("/{id}/comments")
+    @PostMapping("/{id}/comment")
     public CommentResponse createComment(@PathVariable(value ="id") UUID postId,
                                          @RequestBody CommentRequest dto) {
         return commentService.save(postId,dto);
